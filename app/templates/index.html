@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>To-Do List</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+  <h1> TODO.AI </h1>
+  <div id="brainDump">
+    <h2>Brain Dump</h2>
+    <textarea id="taskInput" placeholder="Write your tasks here"></textarea>
+    <button onclick="categorizeTasks()">Categorize Tasks</button>
+  </div>
+  <div id="subgroups">
+    <h2>Subgroups</h2>
+    <ul id="subgroupList">
+      <!-- Subgroups will be dynamically added here -->
+    </ul>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
