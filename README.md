@@ -1,5 +1,5 @@
 # Taskwave
-AI Task Management Tool. By Alex and Dan.
+AI Task Management Tool.
 
 Here's our website for a Product Overview: https://www.taskwave.app/
 
