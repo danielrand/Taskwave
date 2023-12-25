@@ -5,7 +5,7 @@ function categorizeTasks() {
   const requestData = { tasks: tasks };
 
   fetch("/categorize", {
-    method: "POST", // You can also use "GET" if appropriate
+    method: "POST", 
     headers: {
       "Content-Type": "application/json",
     },
@@ -17,9 +17,6 @@ function categorizeTasks() {
       console.log(typeof data);
       var categories = data.response.categories;
       displaySubgroups(categories);
-
-      // Do something with the categorization result
-      // For example, update the UI to display the categories
     })
     .catch((error) => {
       console.error("Error:", error);
@@ -29,7 +26,6 @@ function categorizeTasks() {
 
 // Display the subgroups with tasks
 function displaySubgroups(categories) {
-  console.log("REACHED")
   var subgroupList = document.getElementById('subgroupList');
   subgroupList.innerHTML = '';
   console.log(categories)
@@ -58,9 +54,10 @@ function createSubgroup(category) {
   
   var tasks = category.tasks;
   for (var i = 0; i < tasks.length; i++) {
-    var task = tasks[i];
+    var task = tasks[i].task;
+    var time = tasks[i].time;
     var taskItem = document.createElement('li');
-    taskItem.innerText = task;
+    taskItem.innerText = task.concat(" (", time, " minutes)");
     taskList.appendChild(taskItem);
   }
 

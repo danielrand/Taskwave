@@ -41,14 +41,14 @@ def my_link():
         presence_penalty=0
     )
     response = chat_completion["choices"][0]["message"]["content"]
-
+    
     # Check the response to ensure that it's valid json and that it conforms to our expected schema
-    json_respone = json.loads(response)
-    print(json_respone)
-    validate(instance=json_respone, schema=response_schema)
+    json_response = json.loads(response)
+    print(json_response)
+    validate(instance=json_response, schema=response_schema)
     # Right now we don't catch the exception thrown when the json doesn't conform to the schema or is invalid (we just assume it's valid), maybe we should reinvoke the api?
 
-    return jsonify({"response": json_respone})
+    return jsonify({"response": json_response})
 
 if __name__ == '__main__':
     app.run()
