@@ -1,4 +1,6 @@
 from flask import Flask, render_template, jsonify, request
+from prompts.prompts import prompt, response_schema
+from jsonschema import validate
 import os
 import openai
 import json
@@ -12,20 +14,26 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('./index.html')
     
 @app.route('/categorize/', methods=['POST'])
 def my_link():
     data = request.get_json()
+    
+    # parse tasks list into string for the prompt (is this needed?)
     tasks = data['tasks']
     tasks_str = ""
     for task in tasks:
         tasks_str += f"{task}\n"
-    prompt = "I am giving you a list of tasks that I need to get done. can you look at these tasks on group based on the category of the task? also can you please keep the tasks general, don't get too specific in labeling the tasks so that the categories could apply to other tasks as well here's the tasks: " + tasks_str + " when you do that please format the tasks and categories into a json string. please just respond with the json and the json should be fomatted like so {'categories': [{'category': 'Category name goes here', 'tasks': ['Repot the snake plant', 'Declutter the apartment']}, {'category': 'Second category', 'tasks': ['Buy a new phone']}]}"
-    print(prompt)
+
+    message = prompt.format(tasks_str, response_schema)
+    print(message)
+    
+    # OpenAI API call
     chat_completion = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo-16k", 
-        messages=[{"role": "user", "content": prompt}],
+        model="gpt-3.5-turbo-1106", 
+        response_format={ "type": "json_object" },
+        messages=[{"role": "user", "content": message}],
         temperature=0,
         max_tokens=2624,
         top_p=1,
@@ -33,9 +41,14 @@ def my_link():
         presence_penalty=0
     )
     response = chat_completion["choices"][0]["message"]["content"]
-    json_data = json.loads(response)
-    print(json_data)
-    return jsonify({"response": json_data})
+
+    # Check the response to ensure that it's valid json and that it conforms to our expected schema
+    json_respone = json.loads(response)
+    print(json_respone)
+    validate(instance=json_respone, schema=response_schema)
+    # Right now we don't catch the exception thrown when the json doesn't conform to the schema or is invalid (we just assume it's valid), maybe we should reinvoke the api?
+
+    return jsonify({"response": json_respone})
 
 if __name__ == '__main__':
     app.run()
