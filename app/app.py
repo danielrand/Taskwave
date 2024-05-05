@@ -2,11 +2,11 @@ from flask import Flask, render_template, jsonify, request
 from prompts.prompts import prompt, response_schema
 from jsonschema import validate
 import os
-import openai
+from openai import OpenAI
 import json
 
 # Load your API key from an environment variable or secret management service
-openai.api_key = os.getenv("OPENAI_API_KEY")
+client = OpenAI(api_key = os.getenv("OPENAI_API_KEY"))
 
 # print(chat_completion)
 
@@ -27,20 +27,21 @@ def my_link():
         tasks_str += f"{task}\n"
 
     message = prompt.format(tasks_str, response_schema)
-    print(message)
     
     # OpenAI API call
-    chat_completion = openai.ChatCompletion.create(
+    chat_completion = client.chat.completions.create(
         model="gpt-3.5-turbo-1106", 
+        messages=[
+            {"role": "user", "content": message},
+        ],
         response_format={ "type": "json_object" },
-        messages=[{"role": "user", "content": message}],
         temperature=0,
         max_tokens=2624,
         top_p=1,
         frequency_penalty=0,
         presence_penalty=0
     )
-    response = chat_completion["choices"][0]["message"]["content"]
+    response = chat_completion.choices[0].message.content
     
     # Check the response to ensure that it's valid json and that it conforms to our expected schema
     json_response = json.loads(response)
