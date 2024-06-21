@@ -3,13 +3,28 @@
 <head>
   <title>To-Do List</title>
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'border-color': 'rgba(255, 255, 255, 0.2)',
+            'background-dark': 'rgba(0, 0, 0, 0.4)',
+          }
+        }
+      }
+    }
+  </script>
 </head>
-<body>
+<body class="mx-8">
   <h1> Taskwave.AI </h1>
   <div id="brainDump">
     <h2>Brain Dump</h2>
-    <textarea id="taskInput" placeholder="Write your tasks here"></textarea>
-    <button onclick="categorizeTasks()">Categorize Tasks</button>
+    <h3>What tasks do you need to get done?</h3>
+    <textarea class="rounded-t border-color border-x-2 border-t-2 bg-transparent align-middle leading-none py-6 px-5 text-white" id="taskInput" placeholder="Write your tasks here"></textarea>
+    <button class="w-full h-10 rounded-b border-color border-2 bg-background-dark text-white" onclick="categorizeTasks()">Group Tasks</button>
   </div>
   <div id="subgroups">
     <h2>Subgroups</h2>

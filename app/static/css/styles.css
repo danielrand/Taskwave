@@ -1,3 +1,6 @@
+html {
+  background-color: orange;
+}
 body {
     font-family: Arial, sans-serif;
     margin: 20px;
@@ -14,7 +17,7 @@ body {
   #taskInput {
     width: 100%;
     height: 100px;
-    margin-bottom: 10px;
+    /* margin-bottom: 10px; */
   }
   
   #subgroups {

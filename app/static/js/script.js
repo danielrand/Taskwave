@@ -72,3 +72,13 @@ function updateSubgroupTitle(input) {
   subgroup.firstChild.data = newTitle;
 }
 
+// Andrew code
+document.getElementById('taskInput').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    e.target.value += '\n• ';
+  }
+})
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('taskInput').value = '• ';
+})
