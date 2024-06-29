@@ -30,21 +30,23 @@ function displaySubgroups(categories) {
   subgroupList.innerHTML = '';
   console.log(categories)
   for (const category of categories) {
-    console.log(category)
-    var subgroup = createSubgroup(category);
+    console.log(category);
+    const catIndex = console.log(categories.indexOf(category));
+    var subgroup = createSubgroup(category, catIndex);
     subgroupList.appendChild(subgroup);
   }
 }
 
 // Create a subgroup with tasks
-function createSubgroup(category) {
+function createSubgroup(category, catIndex) {
   var subgroup = document.createElement('li');
   subgroup.className = 'subgroup';
 
   var titleInput = document.createElement('input');
   titleInput.type = 'text';
-  titleInput.value = category.category;
-  titleInput.className = 'rounded-t-2xl block -mb-3 h-10 bg-background-dark text-white border-borderColor border-2'
+  const newCategoryTitle = category.category.charAt(0).toUpperCase() + category.category.slice(1);
+  titleInput.value = `Group ${0+1}: ${newCategoryTitle}`;
+  titleInput.className = 'rounded-t-2xl block -mb-3 h-10 bg-background-dark text-white border-borderColor border-2 text-center'
   titleInput.addEventListener('input', function () {
     updateSubgroupTitle(this);
   });
