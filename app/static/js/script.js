@@ -53,16 +53,20 @@ function createSubgroup(category, catIndex) {
   subgroup.appendChild(titleInput);
 
   var taskList = document.createElement('ul');
-  taskList.className = 'taskList border-borderColor border-2 rounded-b rounded-tr';
+  taskList.className = 'taskList border-borderColor border-2 rounded-b rounded-tr p-4';
   
   var tasks = category.tasks;
   for (var i = 0; i < tasks.length; i++) {
     var task = tasks[i].task;
     var time = tasks[i].time;
     var taskItem = document.createElement('li');
+    const checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.className = 'mr-2';
     taskItem.className = 'text-white font-inter';
-    taskItem.innerText = `• ${task.concat(" (", time, " minutes)")}`;
+    taskItem.innerText = `${task.concat(" (", time, " minutes)")}`;
     taskList.appendChild(taskItem);
+    taskItem.insertAdjacentElement('afterbegin', checkbox);
   }
 
   subgroup.appendChild(taskList);

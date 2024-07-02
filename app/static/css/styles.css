@@ -43,7 +43,7 @@ body {
   
   .subgroup .taskList {
     margin-top: 10px;
-    padding-left: 20px;
+    padding-left: 10px;
     list-style-type: none;
     cursor: move;
   }
