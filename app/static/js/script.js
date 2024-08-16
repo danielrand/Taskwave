@@ -32,8 +32,17 @@ function displaySubgroups(categories) {
   for (const category of categories) {
     console.log(category);
     const catIndex = console.log(categories.indexOf(category));
+    // console.log(typeof catIndex);
     var subgroup = createSubgroup(category, catIndex);
     subgroupList.appendChild(subgroup);
+
+    // sum up total time of tasks in minutes within category
+    sumTaskTimeCategory(category);
+    // logic to express minutes in hours. minutes espressed as decimal point. eg 90 minutes = 1.5 hours
+      // must account for 60 minutes in an hour
+      // account for 120 minutes in 2 hrs and so on
+      // if total minutes is less than 60, then it is expressed as minutes rounded down to nearest quarter hour (45/30/15 minutes)
+      // minutes after the hour should be rounded to nearest quarter hour espressed in decimal (45/30/15 minutes)
   }
 }
 
@@ -69,6 +78,13 @@ function createSubgroup(category, catIndex) {
     taskItem.insertAdjacentElement('afterbegin', checkbox);
   }
 
+  const totalMinutes = sumTaskTimeCategory(category);
+  const sumTime = document.createElement('p');
+  sumTime.className = 'text-white font-inter text-right';
+  sumTime.innerText = `${totalMinutes}`;
+  taskList.appendChild(sumTime);
+  resetTotalMinutes();
+  
   subgroup.appendChild(taskList);
   return subgroup;
 }
@@ -96,3 +112,33 @@ document.addEventListener('DOMContentLoaded', function() {
     textAreaElement.style.height = `${textAreaElement.scrollHeight + 10}px`;
   });
 })
+
+const resetTotalMinutes = () => {
+  totalMinutes = 0;
+}
+
+const sumTaskTimeCategory = (category) => {
+  let totalMinutes = 0;
+  category.tasks.forEach(task => {
+    totalMinutes += task.time;
+  });
+  console.log(totalMinutes);
+  const hoursAndMinutes = readableTimeHoursAndMins(totalMinutes);
+  return hoursAndMinutes;
+}
+
+const readableTimeHoursAndMins = (totalMinutes) => {
+  let hours = Math.floor(totalMinutes / 60);
+  let minutes = totalMinutes % 60;
+  if (hours === 0) {
+    return `${minutes} minutes`;
+  } else if (minutes === 0 && hours === 1) {
+    return `${hours} hour`;
+  } else if (minutes === 0 && hours > 1) {  
+    return `${hours} hours`;
+  } else if (minutes > 0 && hours === 1) {
+    return `${hours} hour ${minutes} minutes`;
+  } else {
+    return`${hours} hours ${minutes} minutes`;
+  }
+}
