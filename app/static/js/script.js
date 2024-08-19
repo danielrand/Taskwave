@@ -14,7 +14,6 @@ function categorizeTasks() {
     .then((data) => {
       // Handle the response from the server here (data contains the categorization result)
       console.log(data);
-      console.log(typeof data);
       var categories = data.response.categories;
       displaySubgroups(categories);
     })
@@ -31,12 +30,11 @@ function displaySubgroups(categories) {
   console.log(categories)
   for (const category of categories) {
     console.log(category);
-    const catIndex = console.log(categories.indexOf(category));
+    const catIndex = categories.indexOf(category);
     // console.log(typeof catIndex);
     var subgroup = createSubgroup(category, catIndex);
     subgroupList.appendChild(subgroup);
 
-    // sum up total time of tasks in minutes within category
     sumTaskTimeCategory(category);
     // logic to express minutes in hours. minutes espressed as decimal point. eg 90 minutes = 1.5 hours
       // must account for 60 minutes in an hour
@@ -54,7 +52,7 @@ function createSubgroup(category, catIndex) {
   var titleInput = document.createElement('input');
   titleInput.type = 'text';
   const newCategoryTitle = category.category.charAt(0).toUpperCase() + category.category.slice(1);
-  titleInput.value = `Group ${0+1}: ${newCategoryTitle}`;
+  titleInput.value = `Group ${catIndex+1}: ${newCategoryTitle}`;
   titleInput.className = 'rounded-t-2xl block -mb-3 h-10 bg-background-dark text-white border-borderColor border-2 text-center'
   titleInput.addEventListener('input', function () {
     updateSubgroupTitle(this);
@@ -122,7 +120,6 @@ const sumTaskTimeCategory = (category) => {
   category.tasks.forEach(task => {
     totalMinutes += task.time;
   });
-  console.log(totalMinutes);
   const hoursAndMinutes = readableTimeHoursAndMins(totalMinutes);
   return hoursAndMinutes;
 }
