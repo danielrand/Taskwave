@@ -1,3 +1,6 @@
+html {
+  background-color: orange;
+}
 body {
     font-family: Arial, sans-serif;
     margin: 20px;
@@ -14,7 +17,7 @@ body {
   #taskInput {
     width: 100%;
     height: 100px;
-    margin-bottom: 10px;
+    /* margin-bottom: 10px; */
   }
   
   #subgroups {
@@ -23,12 +26,12 @@ body {
   }
   
   #subgroups h2 {
-    margin-bottom: 10px;
+    /* margin-bottom: 10px; */
   }
   
   .subgroup {
-    background-color: #f2f2f2;
-    border: 1px solid #ccc;
+    /* background-color: #f2f2f2; */
+    /* border: 1px solid #ccc; */
     padding: 10px;
     margin-bottom: 10px;
     cursor: move;
@@ -40,7 +43,7 @@ body {
   
   .subgroup .taskList {
     margin-top: 10px;
-    padding-left: 20px;
+    padding-left: 10px;
     list-style-type: none;
     cursor: move;
   }
@@ -49,3 +52,69 @@ body {
     margin-bottom: 5px;
   }
   
+  /* adding background shapes code - Andrew */
+  /* .bg-orange {
+    background-color: rgb(255,142,1);
+  }
+
+  .bg-red {
+      background-color: rgb(255,62,1);
+  }
+
+  .bg-yellow {
+      background-color: #FFD601;
+  }
+
+  .bg-shape1 {
+    width: 400px;
+    height: 400px;
+    border-radius: 9999px;
+    position: relative;
+    animation: one 30s infinite;
+    animation-timing-function: ease-in-out;
+  }
+
+  .bg-shape2 {
+      width: 300px;
+      height: 300px;
+      border-radius: 9999px;
+      position: relative;
+      animation: two 35s infinite;
+      animation-timing-function: ease-in-out;
+  }
+
+  .bg-shape3 {
+      width: 250px;
+      height: 250px;
+      border-radius: 50px;
+      position: relative;
+      animation: three 40s infinite;
+      animation-timing-function: ease-in-out;
+  }
+
+  @keyframes one {
+    0% {left: 0px; top: 0px; opacity: 0%;}
+    20% {left: -100px; top: 70px; opacity: 50%;}
+    40% {left: -20px; top: 100px; opacity: 100%;}
+    60% {left: 20px; top: 150px; oapcity: 70%;}
+    80% {left: 50px; top: 85px; opacity: 40%}
+    100% {left: 0px; top: 0px; opacity: 0%;}
+  }
+
+  @keyframes two {
+      0% {left: 0px; top: 150px; opacity: 50%;}
+      20% {left: 50px; top: 90px; opacity: 100%;}
+      40% {left: 70px; top: 120px; opacity: 75%;}
+      60% {left: -20px; top: 80px; opacity: 40%;}
+      80% {left: -80px; top: 110px; opacity: 0%;}
+      100% {left: 0px; top: 150px; opacity: 50%;}
+  }
+
+  @keyframes three {
+      0% {right: 0px; bottom: 0px; opacity: 100%;}
+      20% {right: -50px; bottom: 150px; opacity: 60%;}
+      40% {right: 20px; bottom: 100px; opacity: 25%;}
+      60% {right: 70px; bottom: 120px; opacity: 0%;}
+      80% {right: 10px; bottom: 50px; opacity: 0%;}
+      100% {right: 0px; bottom: 0px; opacity: 100%;}
+  } */

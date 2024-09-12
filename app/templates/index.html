@@ -3,16 +3,45 @@
 <head>
   <title>To-Do List</title>
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'borderColor': 'rgba(255, 255, 255, 0.2)',
+            'background-dark': 'rgba(0, 0, 0, 0.4)',
+          },
+          fontFamily: {
+            inter: ['Inter', 'sans-serif'],
+          },
+          // fontWeight: {
+          //   'normal': 400,
+          //   'medium': 500,
+          //   'semibold': 600,
+          // }
+        },
+      }
+    }
+  </script>
 </head>
-<body>
-  <h1> Taskwave.AI </h1>
+<body class="mx-8">
+  <div class="bg-shape1 bg-orange"></div>
+  <div class="bg-shape2 bg-red"></div>
+  <div class="bg-shape3 bg-yellow"></div>
+  <h1 class="text-left"> Taskwave.AI </h1>
   <div id="brainDump">
-    <h2>Brain Dump</h2>
-    <textarea id="taskInput" placeholder="Write your tasks here"></textarea>
-    <button onclick="categorizeTasks()">Categorize Tasks</button>
+    <h2 class="mb-12 text-2xl">Brain Dump: give us everything you&#39;ve got, big and small.</h2>
+    <h3>What tasks do you <span class="block">need to get done?</span></h3>
+    <textarea class="rounded-t border-borderColor border-x-2 border-t-2 bg-transparent align-middle leading-none py-6 px-5 text-white font-inter" id="taskInput" placeholder="Write your tasks here"></textarea>
+    <button class="w-full h-10 rounded-b border-borderColor border-2 bg-background-dark text-white" onclick="categorizeTasks()">Group Tasks</button>
   </div>
   <div id="subgroups">
-    <h2>Subgroups</h2>
+    <h2 class="my-16 text-right text-2xl">Get your streamlined <span class="block">productivity with our</span> categorization.</h2>
     <ul id="subgroupList">
       <!-- Subgroups will be dynamically added here -->
     </ul>
