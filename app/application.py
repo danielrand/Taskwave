@@ -10,13 +10,13 @@ client = OpenAI(api_key = os.getenv("OPENAI_API_KEY"))
 
 # print(chat_completion)
 
-app = Flask(__name__)
+application = Flask(__name__)
 
-@app.route('/')
+@application.route('/')
 def index():
     return render_template('index.html')
     
-@app.route('/categorize/', methods=['POST'])
+@application.route('/categorize/', methods=['POST'])
 def my_link():
     data = request.get_json()
     
@@ -52,4 +52,4 @@ def my_link():
     return jsonify({"response": json_response})
 
 if __name__ == '__main__':
-    app.run()
+    application.run()
