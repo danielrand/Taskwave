@@ -21,8 +21,8 @@ body {
   }
   
   #subgroups {
-    border-top: 1px solid #ccc;
-    padding-top: 20px;
+    /* border-top: 1px solid #ccc; */
+    /* padding-top: 20px; */
   }
   
   #subgroups h2 {
