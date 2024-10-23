@@ -95,6 +95,7 @@ function updateSubgroupTitle(input) {
 }
 
 // Andrew code
+if (typeof document !== 'undefined') {
 document.getElementById('taskInput').addEventListener('keydown', function(e) {
   if (e.key === 'Enter') {
     e.preventDefault();
@@ -111,11 +112,13 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 })
 
+}
+
 const resetTotalMinutes = () => {
   totalMinutes = 0;
 }
 
-const sumTaskTimeCategory = (category) => {
+export const sumTaskTimeCategory = (category) => {
   let totalMinutes = 0;
   category.tasks.forEach(task => {
     totalMinutes += task.time;
@@ -124,7 +127,7 @@ const sumTaskTimeCategory = (category) => {
   return hoursAndMinutes;
 }
 
-const readableTimeHoursAndMins = (totalMinutes) => {
+export const readableTimeHoursAndMins = (totalMinutes) => {
   let hours = Math.floor(totalMinutes / 60);
   let minutes = totalMinutes % 60;
   if (hours === 0) {
