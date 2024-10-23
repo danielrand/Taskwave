@@ -11,7 +11,7 @@ body {
   }
   
   #brainDump {
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
   }
   
   #taskInput {
@@ -21,8 +21,8 @@ body {
   }
   
   #subgroups {
-    border-top: 1px solid #ccc;
-    padding-top: 20px;
+    /* border-top: 1px solid #ccc; */
+    /* padding-top: 20px; */
   }
   
   #subgroups h2 {
